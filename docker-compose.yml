@@ -6,16 +6,20 @@ services:
     ports:
       - "8080:8080"
       - "50000:50000"
+      - "5000:5000"
     volumes:
       - ~/docker/volumes/jenkins-android/jenkins_home:/var/jenkins_home
     networks:
       network0:
         aliases:
           - jenkins
+
   emulator:
     image: behring/android-emulator:latest
+    environment:
+      EMULATOR: android-24
     ports:
-      - "5555:5555"
+      - "5555"
       - "80"
       - "22"
       - "443"
@@ -25,15 +29,35 @@ services:
     networks:
       network0:
         aliases:
-          - emulator
-  sonarqube:
-    image: sonarqube:latest
-    ports:
-      - "9000:9000"
-      - "9092:9092"
+          - jenkins
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - ~/docker/volumes/postgresql:/var/lib/postgresql
+      - ~/docker/volumes/postgresql/data:/var/lib/postgresql/data
     networks:
       network0:
         aliases:
-          - sonarqube          
+          - jenkins
+  sonarqube:
+    image: sonarqube
+    ports:
+      - "9000:9000"
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
+    volumes:
+      - ~/docker/volumes/sonarqube/conf:/opt/sonarqube/conf
+      - ~/docker/volumes/sonarqube/data:/opt/sonarqube/data
+      - ~/docker/volumes/sonarqube/extensions:/opt/sonarqube/extensions
+    networks:
+      network0:
+        aliases:
+          - jenkins
 networks:
   network0:
