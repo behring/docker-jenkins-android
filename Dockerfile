@@ -5,6 +5,7 @@ ARG ANDROID_SDK_TOOLS_ZIP=sdk-tools-linux-4333796.zip
 ARG GRADLE_VERSION=4.6
 # config proxy(if password contain @, use %40 replace it.)
 # ENV http_proxy http://username:password@host:port
+# ENV https_proxy https://username:password@host:port
 ENV GRADLE_NAME gradle-$GRADLE_VERSION
 ENV GRADLE_ZIP gradle-$GRADLE_VERSION-bin.zip
 ENV ANDROID_HOME /opt/android/sdk
