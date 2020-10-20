@@ -37,11 +37,15 @@ RUN mkdir -p $ANDROID_HOME \
 
 
 #Set sdk licenses, install platform-tools and required sdk, build-tools
-RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses \
-	&& yes | android update sdk --no-ui --all --filter platform-tools,android-28,build-tools-28.0.3
+#RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses --proxy=http --proxy_host=hostname --proxy_port=8080
+#RUN yes | $ANDROID_HOME/tools/bin/sdkmanager "platform-tools" "platform-tools;android-28" "build-tools;28.0.3" --proxy=http --proxy_host=hostname --proxy_port=8080
+
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
 
 RUN apt-get -y update && apt-get -y install vim
 
 USER jenkins
 # List desired Jenkins plugins here
+#COPY ./jenkins-plugins $JENKINS_HOME/plugins/
 RUN /usr/local/bin/install-plugins.sh workflow-aggregator git android-lint build-monitor-plugin

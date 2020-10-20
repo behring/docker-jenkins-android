@@ -13,7 +13,7 @@ services:
         aliases:
           - jenkins
   emulator:
-    image: tracer0tong/android-emulator:latest
+    image: behring/android-emulator:latest
     ports:
       - "5555:5555"
       - "80"
