@@ -10,7 +10,8 @@ ENV SDK_TOOLS_ZIP_NAME sdk-tools.zip
 ENV GRADLE_ZIP_NAME gradle.zip
 ENV ANDROID_HOME /opt/android/sdk
 ENV GRADLE_HOME /opt/gradle
-ENV PATH $ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$GRADLE_HOME/bin:$PATH
+ENV JENKINS_HOME /var/jenkins_home
+ENV PATH $JENKINS_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$GRADLE_HOME/bin:$PATH
 
 # https://developer.android.com/studio/#command-tools
 ENV ANDROID_SDK_TOOLS_URL https://dl.google.com/android/repository/$ANDROID_SDK_TOOLS_ZIP
