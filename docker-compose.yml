@@ -7,8 +7,11 @@ services:
       - "8080:8080"
       - "50000:50000"
       - "5000:5000"
+    privileged: true
     volumes:
       - ~/docker/volumes/jenkins-android/jenkins_home:/var/jenkins_home
+      # USB
+      - /dev/bus/usb:/dev/bus/usb
     networks:
       network0:
         aliases:
