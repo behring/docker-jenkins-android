@@ -25,7 +25,7 @@ RUN wget -P /opt/ $ANDROID_SDK_TOOLS_URL
 # Install Android SDK Tools
 RUN mkdir -p $ANDROID_HOME \
 	&& unzip /opt/$ANDROID_SDK_TOOLS_ZIP -d $ANDROID_HOME/ \
-	&& rm /opt/$ANDROID_SDK_TOOLS_ZIP \
+	&& rm /opt/$ANDROID_SDK_TOOLS_ZIP
 
 #Set sdk licenses, install platform-tools and required sdk, build-tools, need '--proxy=http --proxy_host=proxy.xxx.com --proxy_port=8080' when use proxy
 RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --list  \
