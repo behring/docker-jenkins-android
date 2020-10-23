@@ -1,4 +1,4 @@
-version: '2'
+version: '3.8'
 services:
   jenkins:
     build: .
@@ -39,6 +39,8 @@ services:
     volumes:
       - ~/docker/volumes/postgresql:/var/lib/postgresql
       - ~/docker/volumes/postgresql/data:/var/lib/postgresql/data
+    ports:
+      - "5432"
     networks:
       network0:
         aliases:
