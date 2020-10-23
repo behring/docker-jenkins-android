@@ -30,7 +30,7 @@ RUN yes | $ANDROID_HOME/tools/bin/sdkmanager 'platform-tools' 'platforms;android
 RUN chown -R jenkins:jenkins $ANDROID_DIR
 RUN chown -R jenkins:jenkins $JENKINS_HOME
 
-RUN apt-get -y update && apt-get -y install vim python2.7 python-pip
+RUN apt-get -y update && apt-get -y install vim python2.7 python-pip nodejs npm
 
 #Install flask
 RUN pip install Flask Pillow
