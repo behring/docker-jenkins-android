@@ -17,8 +17,6 @@ ENV JENKINS_HOME /var/jenkins_home
 
 USER root
 
-RUN apt-get -y update && apt-get -y install vim
-
 # Download Android SDK Tools
 RUN wget -P /opt/ $ANDROID_SDK_TOOLS_URL
 
@@ -28,15 +26,14 @@ RUN mkdir -p $ANDROID_HOME \
 	&& rm /opt/$ANDROID_SDK_TOOLS_ZIP
 
 #Set sdk licenses, install platform-tools and required sdk, build-tools, need '--proxy=http --proxy_host=proxy.xxx.com --proxy_port=8080' when use proxy
-RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --list  \
-	&& yes | $ANDROID_HOME/tools/bin/sdkmanager 'platform-tools' 'platforms;android-29' 'build-tools;29.0.3'
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager 'platform-tools' 'platforms;android-29' 'build-tools;29.0.3'
 RUN chown -R jenkins:jenkins $ANDROID_DIR
 RUN chown -R jenkins:jenkins $JENKINS_HOME
 
-RUN apt-get install lsof && apt-get -y install python-pip
+RUN apt-get -y update && apt-get -y install vim python2.7 python-pip
 
 #Install flask
-RUN pip install Flask
+RUN pip install Flask Pillow
 
 USER jenkins
 # List desired Jenkins plugins here

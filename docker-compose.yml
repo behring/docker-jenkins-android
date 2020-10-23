@@ -1,8 +1,7 @@
 version: '3.8'
 services:
   jenkins:
-    build: .
-    image: behring/jenkins-android:latest
+    image: behring/anroid-ci:1.0
     ports:
       - "8080:8080"
       - "50000:50000"
