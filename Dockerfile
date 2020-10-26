@@ -30,7 +30,10 @@ RUN yes | $ANDROID_HOME/tools/bin/sdkmanager 'platform-tools' 'platforms;android
 RUN chown -R jenkins:jenkins $ANDROID_DIR
 RUN chown -R jenkins:jenkins $JENKINS_HOME
 
-RUN apt-get -y update && apt-get -y install vim python2.7 python-pip nodejs npm
+RUN apt-get -y update && apt-get -y install vim python2.7 python-pip
+# 直接apt install nodejs后没有npm被安装，因此只有nodejs -v命令，没有node -v命令，导致sonar运行失败。
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - 
+RUN apt-get install -y nodejs
 
 #Install flask
 RUN pip install Flask Pillow
