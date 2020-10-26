@@ -5,7 +5,7 @@ ARG ANDROID_SDK_TOOLS_ZIP=sdk-tools-linux-4333796.zip
 
 
 # ENV http_proxy='http://username:password@proxy.xxx.com:8080'
-# ENV http_proxys='https://username:password@proxy.xxx.com:8080'
+# ENV https_proxy='https://username:password@proxy.xxx.com:8080'
 
 ENV ANDROID_DIR /opt/android
 ENV ANDROID_HOME ${ANDROID_DIR}/sdk
